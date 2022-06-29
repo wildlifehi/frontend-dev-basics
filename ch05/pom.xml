@@ -5,7 +5,7 @@
 		<artifactId>frontend-dev-basics</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>ch03</artifactId>
+	<artifactId>ch05</artifactId>
 	<packaging>war</packaging>
 	
 	<properties>
@@ -16,7 +16,7 @@
 	</properties>
 	
 	<build>
-		<finalName>ch04</finalName>
+		<finalName>ch05</finalName>
 		<plugins>
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>

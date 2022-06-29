@@ -5,7 +5,7 @@
 		<artifactId>frontend-dev-basics</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>ch03</artifactId>
+	<artifactId>ch04</artifactId>
 	<packaging>war</packaging>
 	
 	<properties>
