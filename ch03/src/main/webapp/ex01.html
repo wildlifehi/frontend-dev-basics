@@ -1,28 +1,67 @@
-<!DOCTYPE html>
-<html lang="ko">
+﻿<!DOCTYPE HTML>
+<html>
 <head>
-<title>Lounge</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<style>
-body {
-	background-color: #00b482;
-    margin-left: 20%;
-    margin-right: 20%;
-    border: 10px solid white;
-    padding: 10px 10px 10px 10px;
-    color: #fff;
-    font-family: 굴림
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>마진과 패딩</title>
+<style type="text/css">
+*		{margin: 0; padding: 0}
+body	{
+	font-family: "돋움", "맑은 고딕";
+	font-size: 0.8em;
+	color: #333;
+}
+.box1	{
+	border: 1px solid #666;
+	width: 300px;
+	background-color: #FFC;
+	cursor: pointer;
+	
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	
+	padding: 10px 20px 30px 40px; /* T R B L */
+	padding: 10px 20px 30px; /* T (R,L) B */
+	padding: 10px 20px; /* (T,B) (R,L)*/
+	padding: 10px; /* (T,R,B,L)*/
+
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	
+	margin: 100px; /* (T,B,R,L) */
+	margin: 100px auto; /* (T,B) (R,L) */
+	margin: 100px auto 300px; /* T (R,L) B */
+	margin: 100px auto 300px auto; /* T R B L */
 }
 </style>
+<script>
+window.onload = function() {
+	elDiv = document.getElementById("box");
+	elDiv.onclick = function() {
+		marginTop = parseInt(elDiv.style.marginTop);
+		intervalId = setInterval(function() {
+			if(marginTop == -80){
+				clearInterval(intervalId);
+				return;
+			}
+			
+			marginTop -= 10;
+			elDiv.style.marginTop = marginTop + "px";
+			console.log(marginTop);
+		}, 10);
+	};
+};
+
+
+</script>
 </head>
+
 <body>
-	<h1>Welcome to the Lounge</h1>
-	<img src="/ch02/images/drinks.gif" alt="음료수 이미지"/>
-	<p>
-		라운지에서 시원한 <a href="/ch02/beverages/elixir.html">건강 음료</a>, 동료들과의 대화로 하루 스트레스를
-		확 날려 버리세요. <em>편안한 음악</em>도 감상하세요. 무선인터넷에도 언제든지 접속 가능합니다.
-	</p>
-	<h2>오시는 길</h2>
-	<p>20층에서 바로 찾을 수 있어요.</p>
+	<div class="box1" id="box" style="margin-top:100px">
+		CSS에서 가장 보편적이고 많이 사용하는 마진과 패딩에 대한 값이 어떻게 적용되는지 확인해 보겠습니다.
+	</div>
 </body>
 </html>
