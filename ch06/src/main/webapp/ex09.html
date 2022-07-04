@@ -3,9 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+window.addEventListener("load", function(){
+	var imgElement = document.createElement("img");
+	
+	// setAttribute 사용
+	
+	// 표준 Attribute => property    (O)
+
+	// (표준 attribute[prop(o)], 비표준 attribute[prop(x)] 읽기/쓰기를 위해
+	// getAttribute/setAttribute 를 사용한다.
+			
+	imgElement.setAttribute("src", "https://cdn.sports.hankooki.com/news/photo/202111/img_6755451_0.jpg");
+	imgElement.setAttribute("style", "width = 200px");
+	imgElement.setAttribute("alt" , '트와이스!');
+	
+	// 왜 property 가 되지 않지?
+	imgElement.setAttribute('data-no', 10);
+	
+	// property => 표준 Attribute  (o)
+	imgElement['no2'] = 10; // 비표준 속성은 사용할 때 prefix 'data-'를 달아 'data-no2'로 사용한다.
+	imgElement['title'] = '트와이스만세~~';
+	
+	// property => 비표준 Attribute (x)
+	imgElement['no'] = 10; // property		// property
+	imgElement.setAttribute('data-no', 10);	// 비표준 attribute, property(x)
+	
+
+	setTimeout(function(){
+		document.body.appendChild(imgElement);
+		console.log(imgElement['no'], imgElement.getAttribute("no"));
+		console.log(imgElement['data-no'], imgElement.getAttribute("data-no"));
+	}, 2000);
+});
+
+
+</script>
 </head>
 <body>
 	<h1>DOM(Document Object Model)</h1>
 	<h2>3. HTML Element 속성 조작하기2</h2>
+	<img data-no='' data-name='' data-email=''/>
 </body>
 </html>
