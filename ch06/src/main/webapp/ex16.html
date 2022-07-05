@@ -3,6 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+
+window.addEventListener("load", function(){
+	document
+		.getElementById("outer-div")
+		.addEventListener("click", function() {
+			console.log("outer-div");
+		})
+		
+	document
+		.getElementById("inner-div")
+		.addEventListener("click", function(e) {
+			var event = e || window.event; /* <= ie8 */
+			
+			// stop propagation(bubbling)
+			event.cancalBubble = true; 
+			
+			console.log("inner-div");
+		})
+		
+
+	document
+		.getElementById("header")
+		.addEventListener("click", function(event) {
+			console.log("header");
+		})
+	
+		
+});
+
+
+</script>
+
+
 </head>
 <body>
 	<h1>DOM(Document Object Model)</h1>
