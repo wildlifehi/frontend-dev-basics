@@ -13,7 +13,6 @@ public class ApiTestController {
 		return "text";
 	}
 	
-	
 	@RequestMapping("/html")
 	public String html() {
 		return "html";
