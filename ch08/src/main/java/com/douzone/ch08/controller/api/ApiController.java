@@ -35,16 +35,24 @@ public class ApiController {
 		return JSONResult.success(vo);
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/post01", method=RequestMethod.POST)
+	public JSONResult post01(GuestbookVo vo) {
+		System.out.println(vo);
+		// service -> repository: DB insert 성공 후,
+		vo.setNo(1L);
+		
+		return JSONResult.success(vo);
+	}
+
 	@ResponseBody
 	@RequestMapping(value="/post02", method=RequestMethod.POST)
 	public JSONResult post02(@RequestBody GuestbookVo vo) {
 		System.out.println(vo);
-		vo.setNo(1L);
-		vo.setName("둘리");
-		vo.setMessage("호이~");
+		// service -> repository: DB insert 성공 후,
+		vo.setNo(2L);
 		
 		return JSONResult.success(vo);
 	}
-	
+
 }
