@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="./jquery/jquery-3.6.0.js"></script>
+<script type="text/javascript"></script>
+<script>
+/*
+ 1. scroll event는 ch07/ex36.html 참고
+ 2. 
+ 
+ */
+$(function() {
+	$(window).scroll(function(){
+		var $window = $(this)
+		var $document = $(document);
+
+		var windowHeight = $window.height();
+		var documentHeight = $document.height();
+		var scrollTop = $window.scrollTop();
+		
+		if(documentHeight < windowHeight + scrollTop + 10) {
+			console.log("fetch() call");
+		}
+	})
+});  
+</script>
+
+</head>
+<body>
+	<h1>DOM Event - scroll(timeline ui, infinite scrolling)</h1>
+	<ul>
+		
+	</ul>
+</body>
+</html>

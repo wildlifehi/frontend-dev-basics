@@ -9,45 +9,40 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js"></script>
 <script>
-$(function(){
-	$("#add-form").submit(function(event){
-		event.preventDefault();
-		
-		/* Validation */
+/*
+ 1. scroll event는 ch07/ex36.html 참고
+ 2. /api/guestbook?sno=10: sno 보다 작은 row를 top-k(limit 0, k) 구현할 것.
+ */
 
-		var vo = {};
-		vo.name = $("#input-name").val();
-		vo.password = $("#input-password").val();
-		vo.message = $("#tx-content").val();
-		
-		console.log(vo);	
-		
-		$.ajax({
-			url: "",
-			type: "post",
-			dataType: "json",
-			contentType: "application/json",
-			data: JSON.stringify(vo),
-			success: function(response) {
-				if(response.result !== 'succese'){
-					console.log(response.message);
-					return;
-				}
-				
-				var vo = response.data;
-				var htmls = 
-					"<li data-no=''>" +
-					"<strong>" + vo.name + "</strong>" +
-					"<p>"+ vo.message + "</p>" +
-					"<strong>" + "</strong>" +
-					"<a href='' data-no='"+ vo.no +"'>삭제</a>" +
-					"</li>";
-				$("#guestbook").prepend(htmls);
-				
+
+var render = function(vo){
+	var htmls = 
+		"<li data-no=''>" +
+		"<strong>" + vo.name + "</strong>" +
+		"<p>"+ vo.message + "</p>" +
+		"<strong>" + "</strong>" +
+		"<a href='' data-no='"+ vo.no +"'>삭제</a>" +
+		"</li>";
+	$("#list-guestbook").prepend(htmls);
+
+}
+
+$(function(){
+	
+	$.ajax({
+		url: "/ch08/api/guestbook",
+		type: "get",
+		dataType: "json",
+		success: function(response) {
+			if(response.result !== 'succese'){
+				console.log(response.message);
+				return;
 			}
-		});
-	});
-});
+			
+			console.log(response.data);
+			}
+	});	
+}
 </script>
 </head>
 <body>
