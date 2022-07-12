@@ -9,45 +9,49 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js"></script>
 <script>
-$(function(){
+var render = function(vo, mode) {
+	var htmls = 
+		"<li data-no='" + vo.no + "'>" +
+		"<strong>" + vo.name + "</strong>" +
+		"<p>" + vo.message + "</p>" +
+		"<strong></strong>" +
+		"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
+		"</li>";
+	
+	$("#list-guestbook")[mode ? "append" : "prepend"](htmls);
+}
+
+
+$(function() {
 	$("#add-form").submit(function(event){
 		event.preventDefault();
 		
 		/* Validation */
-
+		
 		var vo = {};
 		vo.name = $("#input-name").val();
 		vo.password = $("#input-password").val();
 		vo.message = $("#tx-content").val();
 		
-		console.log(vo);	
+		console.log(vo);
 		
 		$.ajax({
-			url: "",
+			url: "/ch08/api/guestbook",
 			type: "post",
 			dataType: "json",
 			contentType: "application/json",
 			data: JSON.stringify(vo),
 			success: function(response) {
-				if(response.result !== 'succese'){
-					console.log(response.message);
+				if(response.result !== 'success'){
+					console.error(response.message);
 					return;
 				}
-				
-				var vo = response.data;
-				var htmls = 
-					"<li data-no=''>" +
-					"<strong>" + vo.name + "</strong>" +
-					"<p>"+ vo.message + "</p>" +
-					"<strong>" + "</strong>" +
-					"<a href='' data-no='"+ vo.no +"'>삭제</a>" +
-					"</li>";
-				$("#guestbook").prepend(htmls);
-				
+				render(response.data);
 			}
 		});
+		
 	});
-});
+})
 </script>
 </head>
 <body>
@@ -90,8 +94,6 @@ $(function(){
 						<strong></strong>
 						<a href='' data-no=''>삭제</a> 
 					</li>
-					
-									
 				</ul>
 			</div>
 </body>

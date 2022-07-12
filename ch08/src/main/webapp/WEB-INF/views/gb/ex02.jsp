@@ -10,39 +10,50 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js"></script>
 <script>
 /*
- 1. scroll event는 ch07/ex36.html 참고
- 2. /api/guestbook?sno=10: sno 보다 작은 row를 top-k(limit 0, k) 구현할 것.
- */
 
+1. scroll event는 ch07/ex36.html 참고
+2. /api/guestbook?sno=10: sno 보다 작은 row를 top-k(limit 0, k) 구현 할 것
+		
+*/
 
-var render = function(vo){
+var render = function(vo, mode) {
 	var htmls = 
-		"<li data-no=''>" +
+		"<li data-no='" + vo.no + "'>" +
 		"<strong>" + vo.name + "</strong>" +
-		"<p>"+ vo.message + "</p>" +
-		"<strong>" + "</strong>" +
-		"<a href='' data-no='"+ vo.no +"'>삭제</a>" +
+		"<p>" + vo.message + "</p>" +
+		"<strong></strong>" +
+		"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
 		"</li>";
-	$("#list-guestbook").prepend(htmls);
-
+	
+	$("#list-guestbook")[mode ? "append" : "prepend"](htmls);
 }
 
-$(function(){
-	
+
+var fetch = function() {
 	$.ajax({
 		url: "/ch08/api/guestbook",
 		type: "get",
 		dataType: "json",
 		success: function(response) {
-			if(response.result !== 'succese'){
-				console.log(response.message);
+			if(response.result !== 'success'){
+				console.error(response.message);
 				return;
 			}
 			
-			console.log(response.data);
-			}
-	});	
+			response.data.forEach(function(vo){
+				render(vo, true);
+			});
+		}		
+	});
 }
+
+$(function(){
+	// ...
+	// ...
+	// ...
+
+	fetch();
+});
 </script>
 </head>
 <body>
@@ -55,38 +66,6 @@ $(function(){
 					<input type="submit" value="보내기" />
 				</form>
 				<ul id="list-guestbook">
-
-					<li data-no=''>
-						<strong>지나가다가</strong>
-						<p>
-							별루입니다.<br>
-							비번:1234 -,.-
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-					
-					<li data-no=''>
-						<strong>둘리</strong>
-						<p>
-							안녕하세요<br>
-							홈페이지가 개 굿 입니다.
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-
-					<li data-no=''>
-						<strong>주인</strong>
-						<p>
-							아작스 방명록 입니다.<br>
-							테스트~
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-					
-									
 				</ul>
 			</div>
 </body>
