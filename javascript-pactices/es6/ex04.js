@@ -2,7 +2,7 @@
  * Default Parameter
  */
 
- const print = function(strs, end='\n') {
+const print = function(strs, end='\n') {
     console.log(strs.join(end));
 }
 

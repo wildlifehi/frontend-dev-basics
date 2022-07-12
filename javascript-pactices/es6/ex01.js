@@ -1,7 +1,7 @@
 /**
  * let: Block Scope의 변수
  */
- try {
+try {
     if(true) {
         let i = 20;
         var j = 10;
@@ -25,3 +25,4 @@ try {
 } catch(e) {
     console.error('[오류]' + e);
 }
+

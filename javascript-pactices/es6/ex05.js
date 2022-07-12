@@ -3,7 +3,7 @@
  * 
  */
 
- const power01 = function(x) {
+const power01 = function(x) {
     y = x * x;
     return y;
 }
@@ -45,3 +45,4 @@ const o = {
 };
 
 o.printFriends();
+
