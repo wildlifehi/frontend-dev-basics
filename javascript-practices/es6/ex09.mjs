@@ -16,8 +16,3 @@ console.log(m.add(10, 20));
 // import destructing
 import {subtract} from './ex09.03.mjs';
 console.log(subtract(10, 20));
-
-// 04
-// import destructing II
-import {add} from './ex09.04.mjs';
-console.log(add(10, 20));
